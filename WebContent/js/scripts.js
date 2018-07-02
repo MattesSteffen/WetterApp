@@ -15,10 +15,10 @@ var x = document.getElementById("geoloc");
 $(document).ready(function(){
 	$('.tabs').tabs();
 	$('.sidenav').sidenav();	
-	
+	$('#tabsNavBar').tabs({ 'swipeable': true });
 	
 	console.log("test");
-	getLocation();	    
+	getLocation();	
   });
 
 
@@ -65,10 +65,17 @@ function showPosition(position) {
 }
 
 function showWeather() {
-	 $("#Heute").append("<p>" + JSON.stringify(weather.current) + "</p>");
-	 $("#forecast").append("<p>" + JSON.stringify(weather.forecast) + "</p>");
-	 $("#uv").append("<p>" + JSON.stringify(weather.uv) + "</p>");
-	 $("#pol").append("<p>" + JSON.stringify(weather.pollution) + "</p>");
+	
+	var url = "http://openweathermap.org/img/w/01d.png";
+
+	 //$("#Heute").append("<p>" + JSON.stringify(weather.current) + "</p>");
+	 $("#Vorhersage").append("<p>" + JSON.stringify(weather.forecast) + "</p>");
+	 $("#UVIndex").append("<p>" + JSON.stringify(weather.uv) + "</p>");
+	 $("#Pollution").append("<p>" + JSON.stringify(weather.pollution) + "</p>");
+	 $("#Stadname").append("<p>" + weather.current.name + "</p>");
+	 
+	 //$("Heute").append("<img src=" + url +" alt='HTML5 Icon'>");
+	 //$("#weatherCond").attr("src", "http://openweathermap.org/img/w/11d.png")
 }
 
 
