@@ -13,9 +13,12 @@ var x = document.getElementById("geoloc");
 
 
 $(document).ready(function(){
+	$('.tabs').tabs();
+	$('.sidenav').sidenav();	
+	
+	
 	console.log("test");
-	getLocation();	
-    //$('.sidenav').sidenav();
+	getLocation();	    
   });
 
 
@@ -63,6 +66,9 @@ function showPosition(position) {
 
 function showWeather() {
 	 $("#Heute").append("<p>" + JSON.stringify(weather.current) + "</p>");
+	 $("#forecast").append("<p>" + JSON.stringify(weather.forecast) + "</p>");
+	 $("#uv").append("<p>" + JSON.stringify(weather.uv) + "</p>");
+	 $("#pol").append("<p>" + JSON.stringify(weather.pollution) + "</p>");
 }
 
 
