@@ -1,0 +1,95 @@
+/* 
+ Wheater App JS
+*/
+var location = {};
+var APIKey = "";
+var date = new Date();
+var time = "day";
+
+var htmlDate = document.getElementById("date");
+htmlDate.innerHTML = date.toDateString();
+
+function getLocation() {	
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(loc) {
+			location = loc;
+		}, showError);
+	} else {
+		alert("Geolocation is not supported by this browser.");
+	}
+}
+
+function showError(error) {
+	switch (error.code) {
+	case error.PERMISSION_DENIED:
+		alert("User denied the request for Geolocation.")
+		break;
+	case error.POSITION_UNAVAILABLE:
+		alert("Location information is unavailable.")
+		break;
+	case error.TIMEOUT:
+		alert("The request to get user location timed out.")
+		break;
+	case error.UNKNOWN_ERROR:
+		alert("An unknown error occurred.")
+		break;
+	}
+}
+
+
+
+$(documtent).ready(function() {
+	location = getLocation();
+	var Paramkey = "&APPID=e87443021b8fe2a11b09118413a4dd8c";
+	var urlAPI = "http://api.openweathermap.org/data/2.5/weather?";
+	var lat = "lat=" + location.coords.latitude + "";
+	var ion = "&lon=" + location.coords.longitude + "";
+
+	var url = urlAPI + lat + ion + Paramkey; 
+	$.ajax({
+		url : url,
+		type : "GET",
+		success : showWeather,
+		error: function(error) {
+			alert("An Error occured: " + error);
+			console.log("An Error occured " + error);
+		}
+	});
+	
+	
+	
+	
+});
+
+function showWeather(response) {	
+	var description = response.weather.description;
+	var id= response.weather.id;
+	var icon = "<i class='wi wi-owm-" + id + "'></i>";
+	
+	
+	var temperature = Math.floor(response.main.temp - 273);
+	var humidity = response.main.humidity;
+	var windSpeed = Math.floor(response.wind.speed * 1.60934);
+	var visibility = Math.floor((response.visibility / 1000) * 1.60934);
+	
+	var sunSet = response.sys.sunset;
+	
+	var timeNow = Math.round(currentDate / 1000);	
+	dayNight = (timeNow < sunSet) ? "day" : "night";
+	
+	
+	
+	//var sunset = response.sys.sunset
+	document.getElementById("description").innerHTML = description;
+	document.getElementById("temperature").innerHTML = temperature + "&degC";
+	document.getElementById("humidity").innerHTML = humidity + "%";
+	document.getElementById("wind").innerHTML = windSpeed + "km/h";
+	document.getElementById("visibility").innerHTML = visibility + "km";
+	
+	description.innerHTML = "<i id='icon-desc' class='wi wi-owm-" + (dayNight - id) + "></i><p>" + description + "+</p>";
+	
+}
+
+
+
+

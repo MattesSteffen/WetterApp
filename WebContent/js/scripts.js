@@ -13,6 +13,7 @@ var x = document.getElementById("geoloc");
 
 
 $(document).ready(function(){
+	M.AutoInit();
 	$('.tabs').tabs();
 	$('.sidenav').sidenav();	
 	$('#tabsNavBar').tabs({ 'swipeable': true });
@@ -73,22 +74,21 @@ function showWeather() {
 
 	 //$("#Heute").append("<p>" + JSON.stringify(weather.current) + "</p>");
 	 //$("#Vorhersage").append("<p>" + JSON.stringify(weather.forecast) + "</p>");
-	 $("#UVIndex").append("<p>" + JSON.stringify(weather.uv) + "</p>");
-	 $("#Pollution").append("<p>" + JSON.stringify(weather.pollution) + "</p>");
-	 $("#Stadname").append("<p>" + weather.current.name + "</p>");
+	 //$("#UVIndex").append("<p>" + JSON.stringify(weather.uv) + "</p>");
+	 //$("#Pollution").append("<p>" + JSON.stringify(weather.pollution) + "</p>");
+	 //$("#Stadname").append("<p>" + weather.current.name + "</p>");
 	 
 	 //$("Heute").append("<img src=" + url +" alt='HTML5 Icon'>");
 	 //$("#weatherCond").attr("src", "http://openweathermap.org/img/w/11d.png")
 	 
-	 $("#Heute").append(generateCard());
+	 //$("#Heute").append(generateCard());
 	 //var test = generateCollapsibleItem(weather.forecast.list[0]);
 	 
 	 weather.forecast.list.forEach(function(item) {
 		 $("#VorhersageColl").append(generateCollapsibleItem(item));
 	 }); 
 	 $('.collapsible').collapsible();
-	 
-	 $('.tabs-content carousel carousel-slider').attr("height", "800px");
+
 }
 
 
