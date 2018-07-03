@@ -87,6 +87,8 @@ function showWeather() {
 		 $("#VorhersageColl").append(generateCollapsibleItem(item));
 	 }); 
 	 $('.collapsible').collapsible();
+	 
+	 $('.tabs-content carousel carousel-slider').attr("height", "800px");
 }
 
 
